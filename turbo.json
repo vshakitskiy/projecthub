@@ -1,0 +1,18 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "pipeline": {
+        "start": {},
+        "studio": {},
+        "build": {
+            "dependsOn": [
+                "^build"
+            ]
+        },
+        "lint": {},
+        "typecheck": {},
+        "dev": {
+            "cache": false,
+            "persistent": true
+        }
+    }
+}
