@@ -4,6 +4,7 @@
         "start": {},
         "studio": {},
         "build": {
+            "outputs": [".next/**", "!.next/cache/**"],
             "dependsOn": [
                 "^build"
             ]
