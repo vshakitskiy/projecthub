@@ -4,6 +4,7 @@ import { Montserrat } from "next/font/google"
 import type { Metadata } from "next"
 import { cn } from "@/lib/utils"
 import ThemeProvider from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
 
 
 const montserrat = Montserrat({ 
@@ -33,8 +34,9 @@ const RootLayout = ({
                     defaultTheme="system"
                     enableSystem
                 >
-                    {children}
+                    <>{children}</>
                 </ThemeProvider>
+                <Toaster />
             </body>
         </html>
     )

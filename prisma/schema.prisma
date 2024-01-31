@@ -11,9 +11,17 @@ datasource db {
 }
 
 model User {
-    id           Int    @id @default(autoincrement())
+    id           String  @id @unique @default(cuid())
     name         String
     surname      String
-    patronymic   String
+    patronymic   String?
+    email        String  @unique
     passwordHash String
+    image        String?
+    role         Role[]
+}
+
+enum Role {
+    customer
+    agent
 }
