@@ -1,8 +1,17 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
-const useMedia = (mobileSize: number) => {
+// [{
+//     width: number
+//     isMobile: boolean
+// }, Dispatch<SetStateAction<{
+//     width: number
+//     isMobile: boolean
+// }>>]
+
+const useMedia = (mobileSize: number) => {    
     const [width, setWidth] = useState({
         width: window.innerWidth,
         isMobile: window.innerWidth < mobileSize
@@ -20,6 +29,7 @@ const useMedia = (mobileSize: number) => {
             window.removeEventListener("resize", resizeHandler)
     }, [width])
 
+    // return [width, setWidth]
     return width
 }
 
