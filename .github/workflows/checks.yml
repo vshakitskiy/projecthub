@@ -1,0 +1,41 @@
+name: CHECKS
+
+on:
+    push:
+        branches:
+            - dev
+    pull_request:
+
+jobs:
+    lint:
+        runs_on: ubuntu_latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v2
+            with:
+                version: 8
+            - name: Use Node.js 20
+            uses: actions/setup-node@v3
+            with:
+                node-version: 20
+                cache: 'pnpm'
+            - name: Install dependencies
+            run: pnpm install
+            - name: Run lint
+            run: pnpm lint
+    typecheck:
+        runs_on: ubuntu_latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v2
+            with:
+                version: 8
+            - name: Use Node.js 20
+            uses: actions/setup-node@v3
+            with:
+                node-version: 20
+                cache: 'pnpm'
+            - name: Install dependencies
+            run: pnpm install
+            - name: Run typecheck
+            run: pnpm typecheck
