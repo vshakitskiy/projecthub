@@ -5,7 +5,7 @@
     "scripts": {
         "start": "turbo next-start",
         "dev": "turbo next-dev",
-        "build": "turbo next-build",
+        "build": "prisma generate && turbo next-build",
         "lint": "turbo next-lint",
         "typecheck": "turbo tsc-typecheck",
         "studio": "turbo prisma-studio",
