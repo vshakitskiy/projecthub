@@ -9,10 +9,11 @@ import { createUser } from "@/lib/actions/user"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
 import { Loader2 as Spinner } from "lucide-react"
+import { SignUpSchema, signUpSchema } from "@/types/zod"
+import Field from "@/components/Field"
 
 const SignUpPage = () => {
     const [isSubmited, setIsSubmited] = useState(false)
@@ -30,34 +31,7 @@ const SignUpPage = () => {
         }
     ]
 
-    const signUpSchema = z.object({
-        name: z.string().min(2, {
-            message: "Имя должно быть длиннее 2 символов"
-        }).max(20, {
-            message: "Имя не должно превышать 20 символов"
-        }),
-        surname: z.string().min(2, {
-            message: "Фамилия должна быть длиннее 2 символов"
-        }).max(30, {
-            message: "Фамилия не должна превышать 30 символов"
-        }),
-        patronymic: z.string().optional(),
-        email: z.string().min(5, {
-            message: "Почта должна быть длиннее 5 символов"
-        }).max(50, {
-            message: "Почта не должна превышать 50 символов"
-        }),
-        password: z.string().min(8, {
-            message: "Пароль должна быть длиннее 8 символов"
-        }).max(20, {
-            message: "Пароль не должен превышать 20 символов"
-        }),
-        role: z.array(z.string()).min(1, {
-            message: "Нужно выбрать хотя бы 1 роль"
-        }).refine(value => value.some(item => item))
-    })
-
-    const form = useForm<z.infer<typeof signUpSchema>>({
+    const form = useForm<SignUpSchema>({
         resolver: zodResolver(signUpSchema),
         defaultValues: {
             name: "",
@@ -69,7 +43,7 @@ const SignUpPage = () => {
         }
     })
 
-    const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
+    const onSubmit = async (data: SignUpSchema) => {
         setIsSubmited(true)
         const res = await createUser(data)
         console.log(res.ok)
@@ -97,95 +71,31 @@ const SignUpPage = () => {
             <p className="text-muted-foreground mt-2">Войдите в ваш аккаунт:</p>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-3">
-                    <FormField
-                        control={form.control}
+                    <Field 
+                        form={form}
                         name="name"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-xl">
-                                        Имя
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Имя"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        label="Имя"
                     />
-                    <FormField
-                        control={form.control}
+                    <Field 
+                        form={form}
                         name="surname"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-xl">
-                                        Фамилия
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Фамилия"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        label="Фамилия"
                     />
-                    <FormField
-                        control={form.control}
+                    <Field 
+                        form={form}
                         name="patronymic"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-xl">
-                                        Отчество
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Отчество"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        label="Отчество"
                     />
-                    <FormField
-                        control={form.control}
+                    <Field 
+                        form={form}
                         name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-xl">
-                                        Почта
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Почта"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        label="Почта"
                     />
-                    <FormField
-                        control={form.control}
+                    <Field
+                        form={form}
                         name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-xl">
-                                        Пароль
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Пароль"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        label="Пароль"
+                        input="password"
                     />
                     <FormField
                         control={form.control}

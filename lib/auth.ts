@@ -2,7 +2,7 @@ import { AuthOptions, DefaultSession, getServerSession } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import prisma from "@/prisma/db"
 import { compare } from "bcryptjs"
-import { User } from "@/types"
+import { User } from "@/types/db"
 
 const credentialsProvider = {
     email: {
