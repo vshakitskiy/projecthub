@@ -8,30 +8,18 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { SignInResponse, signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 as Spinner } from "lucide-react"
 import { useState } from "react"
+import { SignInSchema, signInSchema } from "@/types/zod"
+import Field from "@/components/Field"
 
 const SignInPage = () => {
     const [isSubmited, setIsSubmited] = useState(false)
     const router = useRouter()
     const { toast } = useToast()
-    
-    const signInSchema = z.object({
-        email: z.string().min(5, {
-            message: "Почта должна быть длиннее 5 символов"
-        }).max(50, {
-            message: "Почта не должна превышать 50 символов"
-        }),
-        password: z.string().min(8, {
-            message: "Пароль должна быть длиннее 8 символов"
-        }).max(20, {
-            message: "Пароль не должен превышать 20 символов"
-        })
-    })
 
-    const form = useForm<z.infer<typeof signInSchema>>({
+    const form = useForm<SignInSchema>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
             email: "",
@@ -39,7 +27,7 @@ const SignInPage = () => {
         }
     })
 
-    const onSubmit = async ({ email, password }: z.infer<typeof signInSchema>) => {
+    const onSubmit = async ({ email, password }: SignInSchema) => {
         setIsSubmited(true)
         const res = await signIn("credentials", {
             email,
@@ -62,47 +50,24 @@ const SignInPage = () => {
         })
     }
 
+    console.log(Object.keys(signInSchema.shape))
+
     return (
         <div className="w-[300px] sm:w-[400px] md:w-[500px] mx-auto relative">
             <h1 className="pt-7">Добро пожаловать!</h1>
             <p className="text-muted-foreground mt-2">Войдите в ваш аккаунт:</p>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-3">
-                    <FormField
-                        control={form.control}
+                    <Field 
+                        form={form}
                         name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-xl">
-                                        Почта
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Почта"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        label="Почта"
                     />
-                    <FormField
-                        control={form.control}
+                    <Field
+                        form={form}
                         name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-xl">
-                                        Пароль
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Пароль"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        label="Пароль"
+                        input="password"
                     />
                     <div className="flex gap-4 items-center">
                         <Button type="submit" variant="default" className="rounded-sm" disabled={isSubmited} size="lg">

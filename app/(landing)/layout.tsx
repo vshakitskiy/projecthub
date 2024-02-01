@@ -7,7 +7,7 @@ const LandingLayout = ({
 }) => (
     <div className="h-screen">
         <Navbar />
-        <main className="h-full">
+        <main className="h-full pt-14">
             {children}
         </main>
     </div>
