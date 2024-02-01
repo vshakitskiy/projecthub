@@ -5,7 +5,7 @@ import Link from "next/link"
 
 const AboutPage = () => {
     return (
-        <div className="max-w-3xl mx-auto pt-5 px-5">
+        <div className="max-w-3xl mx-auto pt-5 pb-11 px-5">
             <h1>
                 <span className="inline-block text-purple-800 dark:text-purple-600 mr-2">
                     Project
@@ -23,7 +23,7 @@ const AboutPage = () => {
                     Веб-приложение, с помощью которого предпрениматели (заказчики) могут заказывать реализацию своих задач у студентов (исполнителей), которые в свою очередь могут выполнять задания от заказчиков, а за время выполнения смогут завести друзей, заняться саморазвитием, прокачивая свои soft и hard скиллы, получая деньги и опыт работы!
                 </p>
             </div>
-            <div className="mt-5">
+            <div className="mt-7">
                 <h3>
                     Что мы предлагаем?
                 </h3>
@@ -31,7 +31,7 @@ const AboutPage = () => {
                     Мы предлагаем создать веб-приложение для реализации бизнес-гипотез, в рамках которого студенты реализуют бизнес-гипотезы предпринимателей, получая опыт и деньги. Для предпринимателей данное приложение будет являться экономией сил, денег и времени на проверку гипотезы.
                 </p>
             </div>
-            <div className="mt-5">
+            <div className="mt-7">
                 <h3>
                     Презентация проекта
                 </h3>
@@ -45,7 +45,7 @@ const AboutPage = () => {
                     </Button>
                 </Link>
             </div>
-            <div className="mt-5">
+            <div className="mt-7">
                 <h3>
                     Функционал
                 </h3>
@@ -134,7 +134,7 @@ const AboutPage = () => {
                     </AccordionItem>
                 </Accordion>
             </div>
-            <div className="mt-5">
+            <div className="mt-7">
                 <h3>
                     CJM
                 </h3>
@@ -145,7 +145,7 @@ const AboutPage = () => {
                     </Button>
                 </Link>
             </div>
-            <div className="mt-5">
+            <div className="mt-7">
                 <h3>
                     UX/UI
                 </h3>
