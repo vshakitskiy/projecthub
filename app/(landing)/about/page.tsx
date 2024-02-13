@@ -136,9 +136,9 @@ const AboutPage = () => {
             </div>
             <div className="mt-7">
                 <h3>
-                    CJM
+                    Mind Map, User Flow & CJM
                 </h3>
-                <Link href="https://www.figma.com/file/G9JVYzmlR6LF9jhJlRrtPm/CJM-Project-Hub-(Community)?type=design&node-id=0-1&mode=design" target="_blank">
+                <Link href="https://www.figma.com/file/Mh7ueCVHopj89ijuosDbOm/CJM-Project-Hub?type=design&node-id=0%3A1&mode=design&t=xPFPcZNaZiiw0Kbd-1" target="_blank">
                     <Button className="mt-1 w-full justify-start px-2" variant="ghost">
                         <Link2 className="w-5 h-5" />
                         <p className="ml-1">Открыть CJM в figma</p>
@@ -153,6 +153,17 @@ const AboutPage = () => {
                     <Button className="mt-1 w-full justify-start px-2" variant="ghost">
                         <Link2 className="w-5 h-5" />
                         <p className="ml-1">Открыть UX/UI в figma</p>
+                    </Button>
+                </Link>
+            </div>
+            <div className="mt-7">
+                <h3>
+                    UX/UI v2 (WIP)
+                </h3>
+                <Link href="https://www.figma.com/file/rZoOFARnkmFsjjfvhkfLrN/ProjectHub-v2?type=design&node-id=0%3A1&mode=design&t=qyMqGwPYpFLayv3P-1" target="_blank">
+                    <Button className="mt-1 w-full justify-start px-2" variant="ghost">
+                        <Link2 className="w-5 h-5" />
+                        <p className="ml-1">Открыть UX/UI v2 в figma</p>
                     </Button>
                 </Link>
             </div>
